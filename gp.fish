@@ -6,5 +6,7 @@ function gp
   if string match -q -r 'fatal: The current branch .* has no upstream branch\.' $gpo
     set push_command (string match -r 'git push --set-upstream origin .*$' $gpo)
     commandline -a $push_command
+  else
+    echo $gpo
   end
 end
