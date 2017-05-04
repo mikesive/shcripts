@@ -7,6 +7,8 @@ function gp
     set push_command (string match -r 'git push --set-upstream origin .*$' $gpo)
     commandline -a $push_command
   else
-    echo $gpo
+    for line in $gpo;
+      echo $line
+    end
   end
 end
