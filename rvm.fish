@@ -14,7 +14,7 @@ end
 
 function __handle_rvmrc_stuff --on-variable PWD
   # Source a .rvmrc file in a directory after changing to it, if it exists.
-  # To disable this fature, set rvm_project_rvmrc=0 in $HOME/.rvmrc
+  # To disable this feature, set rvm_project_rvmrc=0 in $HOME/.rvmrc
   if test "$rvm_project_rvmrc" != 0
     set -l cwd $PWD
     while true
