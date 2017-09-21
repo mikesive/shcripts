@@ -1,0 +1,3 @@
+#!/usr/local/bin/ruby -w
+
+safe_branches = ['master', 'devel', 'test', 'prod', 'production']
