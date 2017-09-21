@@ -1,0 +1,11 @@
+#!/usr/local/bin/ruby -w
+
+repos = File.read('./.project').split("\n").map(&:strip)
+
+repos.each do |r|
+  command ="cd #{r};git pull;"
+  if branch = ARGV[0]
+    command += "git checkout #{branch}"
+  end
+  puts `#{command}`
+end
