@@ -1,6 +1,11 @@
 #!/usr/local/bin/ruby -w
 
-repos = File.read('./.project').split("\n").map(&:strip)
+CONFIG_PATH = './.project'
+
+unless File.exist?(CONFIG_PATH)
+  abort('Please ensure .project exists in project container directory.')
+end
+repos = File.read(CONFIG_PATH).split("\n").map(&:strip)
 
 repos.each do |r|
   command ="cd #{r};git pull;"
