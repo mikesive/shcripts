@@ -2,7 +2,7 @@
 
 CONFIG_PATH = './.branches'
 
-safe_branches = ['master', 'devel', 'test', 'prod', 'production']
+safe_branches = ['master', 'devel', 'develop', 'test', 'prod', 'production']
 
 if File.exist?(CONFIG_PATH)
   configured_branches = File.read(CONFIG_PATH).split("\n").map(&:strip)
@@ -10,5 +10,13 @@ if File.exist?(CONFIG_PATH)
   safe_branches.uniq!
 end
 
-unwanted_branches = `git branch`.split("\n").map(&:strip).select { |b| !b.match(/\*/) && !safe_branches.include?(b) }
-puts `git branch -D #{unwanted_branches.join(" ")}`
+unwanted_branches = `git branch`.split("\n").map(&:strip).select do |b|
+  !b.match(/\*/) &&
+    !safe_branches.include?(b)
+end
+
+if unwanted_branches.empty?
+  puts 'No branches to clean.'
+else
+  puts `git branch -D #{unwanted_branches.join(" ")}`
+end
