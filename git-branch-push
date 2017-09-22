@@ -1,0 +1,10 @@
+#!/usr/local/bin/ruby -w
+
+require "open3"
+
+_stdout, stderr, _status = Open3.capture3("git push")
+
+if stderr.include?("fatal: The current branch somebranch has no upstream branch.")
+  new_cmd = stderr.match(/\s*git push [^$]*/)
+  puts `#{new_cmd.to_s.strip}`
+end
